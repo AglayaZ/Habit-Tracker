@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-header">
+    <div>
+        <p class="date">{{ today.strftime('%A') }}</p>
+        <h1>Today</h1>
+    </div>
+</div>
+
+{% if habit_data %}
+    <div class="habits-list">
+        {% for item in habit_data %}
+            <div class="habit-card">
+                <a href="{{ url_for('complete_habit', habit_id=item.habit.id) }}" 
+                   class="habit-check {% if item.completed_today %}done{% endif %}"></a>
+                <span class="habit-name {% if item.completed_today %}done{% endif %}">
+                    {{ item.habit.name }}
+                </span>
+                {% if item.streak > 0 %}
+                    <span class="habit-streak">{{ item.streak }}d</span>
+                {% else %}
+                    <span class="habit-streak">—</span>
+                {% endif %}
+                <a href="{{ url_for('delete_habit', habit_id=item.habit.id) }}" class="habit-delete">Remove</a>
+            </div>
+        {% endfor %}
+    </div>
+    <p class="summary">
+        {{ habit_data|selectattr('completed_today')|list|length }} of {{ habit_data|length }} completed today
+    </p>
+{% else %}
+    <p class="empty">No habits yet. <a href="{{ url_for('add') }}">Add your first one</a></p>
+{% endif %}
+{% endblock %}

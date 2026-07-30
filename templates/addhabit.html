@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Add Habit</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Habit name" required>
+        <button type="submit">Add Habit</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">Back to dashboard</a>
+</div>
+{% endblock %}

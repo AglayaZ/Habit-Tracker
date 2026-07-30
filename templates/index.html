@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="hero">
+    <h1>Habit Tracker</h1>
+    <p>Build better habits</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('signup') }}" class="btn">Get Started</a>
+        <a href="{{ url_for('login') }}" class="btn-secondary">Log In</a>
+    </div>
+</div>
+{% endblock %}

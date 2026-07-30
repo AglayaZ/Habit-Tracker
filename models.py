@@ -15,10 +15,10 @@ class Habit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     created = db.Column(db.Date, default=date.today)
-    userid = db.Column(db.Integer, db.ForeignKey('user_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     completions = db.relationship('Completion', backref='habit', lazy=True)
 
 class Completion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    habitid = db.Column(db.Integer, db.ForeignKey('habit_id'), nullable=False)
+    habit_id = db.Column(db.Integer, db.ForeignKey('habit.id'), nullable=False)
     date = db.Column(db.Date, default=date.today)

@@ -82,7 +82,7 @@ def dashboard():
             'streak': streak
         })
 
-    return render_template('dashboard.html', habit_data=habit_data)
+    return render_template('dashboard.html', habit_data=habit_data, today=today)
 
 @app.route('/add', methods=['POST', 'GET'])
 @login_required
@@ -94,7 +94,7 @@ def add():
         db.session.commit()
         return redirect(url_for('dashboard'))
     
-    return render_template('add_habit.html')
+    return render_template('addhabit.html')
 
 @app.route('/complete/<int:habit_id>')
 @login_required
@@ -118,6 +118,12 @@ def delete_habit(habit_id):
     db.session.delete(habit)
     db.session.commit()
     return redirect(url_for('dashboard'))
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
