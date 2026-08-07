@@ -36,6 +36,14 @@ def signup():
         username = request.form['username']
         email = request.form['email']
         password = generate_password_hash(request.form['password'])
+
+        if User.query.filter_by(email=email).first():
+            flash('An account with that email already exists')
+            return redirect(url_for('signup'))
+        if User.query.filter_by(username=username).first():
+            flash('That username is already taken')
+            return redirect(url_for('signup'))
+        
         user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
