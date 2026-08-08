@@ -152,6 +152,12 @@ main {
     text-decoration: line-through;
 }
 
+.habit-created {
+    font-size: 11px;
+    color: #bbb;
+    display: block;
+}
+
 .habit-streak {
     font-size: 11px;
     color: #999;
