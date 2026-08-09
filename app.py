@@ -89,7 +89,7 @@ def dashboard():
             'completed_today': completed_today,
             'streak': streak
         })
-
+    habit_data.sort(key=lambda x: x['completed_today'])
     return render_template('dashboard.html', habit_data=habit_data, today=today)
 
 @app.route('/add', methods=['POST', 'GET'])
