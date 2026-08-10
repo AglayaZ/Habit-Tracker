@@ -17,6 +17,7 @@
                 <span class="habit-name {% if item.completed_today %}done{% endif %}">
                     {{ item.habit.name }}
                 </span>
+                <span class="category-tag {{ item.habit.category }}">{{ item.habit.category }}</span>
                 <span class="habit-created">since {{ item.habit.created.strftime('%d %b %Y') }}</span>
                 {% if item.streak > 0 %}
                     <span class="habit-streak">{{ item.streak }}d</span>

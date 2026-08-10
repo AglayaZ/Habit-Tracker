@@ -5,6 +5,11 @@
     <h1>Add Habit</h1>
     <form method="POST">
         <input type="text" name="name" placeholder="Habit name" required maxlength="100">
+        <select name="category">
+            <option value="health">Health</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+        </select>
         <button type="submit">Add Habit</button>
     </form>
     <a href="{{ url_for('dashboard') }}">Back to dashboard</a>

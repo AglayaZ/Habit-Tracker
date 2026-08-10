@@ -97,7 +97,8 @@ def dashboard():
 def add():
     if request.method == 'POST':
         name = request.form['name']
-        habit = Habit(name=name, user_id=current_user.id)
+        category = request.form['category']
+        habit = Habit(name=name, category=category, user_id=current_user.id)
         db.session.add(habit)
         db.session.commit()
         return redirect(url_for('dashboard'))
