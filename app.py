@@ -25,6 +25,12 @@ def load_user(user_id):
 
 with app.app_context():
     db.create_all()
+    with db.engine.connect() as conn:
+        try:
+            conn.execute(db.text("ALTER TABLE habit ADD COLUMN IF NOT EXISTS category VARCHAR(50) DEFAULT 'personal'"))
+            conn.commit()
+        except:
+            pass
 
 @app.route('/')
 def index():
